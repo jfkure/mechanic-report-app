@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-# Ensure the database exists and has the proper tables
+# --- Database Setup ---
 def init_db():
     conn = sqlite3.connect('db.sqlite3')
     cursor = conn.cursor()
@@ -26,7 +26,7 @@ def init_db():
 
 init_db()
 
-# Home Page — shows dashboard
+# --- Dashboard View ---
 @app.route('/')
 def dashboard():
     conn = sqlite3.connect('db.sqlite3')
@@ -36,7 +36,7 @@ def dashboard():
     conn.close()
     return render_template('dashboard.html', jobs=jobs)
 
-# Form to create a new job entry
+# --- New Job Entry ---
 @app.route('/new', methods=['GET', 'POST'])
 def new_job():
     if request.method == 'POST':
@@ -62,7 +62,7 @@ def new_job():
         return redirect(url_for('dashboard'))
     return render_template('job_form.html')
 
-# View printable HTML report
+# --- Individual Job Report View ---
 @app.route('/report/<int:job_id>')
 def report(job_id):
     conn = sqlite3.connect('db.sqlite3')
@@ -70,9 +70,17 @@ def report(job_id):
     cursor.execute('SELECT * FROM jobs WHERE id = ?', (job_id,))
     job = cursor.fetchone()
     conn.close()
-    return render_template('report_template.html', job=job)
+    if job:
+        return render_template('report_template.html', job=job)
+    else:
+        return render_template('404.html'), 404
 
-# Required for Render deployment
+# --- Custom 404 Page ---
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+# --- Entry Point for Render Deployment ---
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
