@@ -1,0 +1,13 @@
+# Render deploy instructions
+services:
+  - type: web
+    name: mechanic-report-app         # You can change this to whatever name you like
+    env: python
+    plan: free                        # Use "starter" if you're switching to a paid tier
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 10000                  # Required for Flask on Render
