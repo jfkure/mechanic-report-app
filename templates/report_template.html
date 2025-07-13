@@ -1,18 +1,10 @@
 <!-- Printable HTML report for a single job (feeds into PDF or preview) -->
-{% extends "layout.html" %}
-
+{% extends 'layout.html' %}
 {% block content %}
-<h2>Service Report</h2>
-<hr>
-
-<p><strong>Customer Name:</strong> {{ job[1] }}</p>
-<p><strong>Vehicle:</strong> {{ job[2] }} {{ job[3] }}, {{ job[4] }}</p>
-<p><strong>VIN:</strong> {{ job[5] }}</p>
-<p><strong>Date:</strong> {{ job[7] }}</p>
-
-<h3>Repair Summary:</h3>
-<p>{{ job[6] }}</p>
-
-<hr>
-<p>Thank you for trusting us with your vehicle.</p>
+  <h2>Report Details</h2>
+  <p><strong>Mechanic:</strong> {{ report.mechanic_name }}</p>
+  <p><strong>Date:</strong> {{ report.date.strftime('%Y-%m-%d') }}</p>
+  <p><strong>Vehicle:</strong> {{ report.vehicle_id }}</p>
+  <p><strong>Issue:</strong> {{ report.issue_description }}</p>
+  <p><strong>Status:</strong> {{ report.status }}</p>
 {% endblock %}
