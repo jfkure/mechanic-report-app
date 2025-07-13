@@ -1,9 +1,10 @@
 # Your data schema lives here
 from . import db
+from datetime import datetime
 
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     mechanic_name = db.Column(db.String(100), nullable=False)
     vehicle_id = db.Column(db.String(50), nullable=False)
     issue_description = db.Column(db.Text, nullable=False)
