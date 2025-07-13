@@ -1,30 +1,16 @@
 <!-- Mechanic-facing form to enter new job data -->
-{% extends "layout.html" %}
-
+{% extends 'layout.html' %}
 {% block content %}
-<h2>New Job Entry</h2>
-<form method="POST" action="{{ url_for('new_job') }}">
-    <label>Customer Name:</label><br>
-    <input type="text" name="customer_name" required><br><br>
+  <form method="POST">
+    <label>Mechanic Name:</label>
+    <input type="text" name="mechanic_name" required><br>
 
-    <label>Vehicle Make:</label><br>
-    <input type="text" name="vehicle_make" required><br><br>
+    <label>Vehicle ID:</label>
+    <input type="text" name="vehicle_id" required><br>
 
-    <label>Vehicle Model:</label><br>
-    <input type="text" name="vehicle_model" required><br><br>
+    <label>Issue Description:</label>
+    <textarea name="issue_description" required></textarea><br>
 
-    <label>Vehicle Year:</label><br>
-    <input type="text" name="vehicle_year" required><br><br>
-
-    <label>VIN Number:</label><br>
-    <input type="text" name="vin"><br><br>
-
-    <label>Repair Summary:</label><br>
-    <textarea name="repair_summary" rows="6" cols="50" required></textarea><br><br>
-
-    <label>Job Date:</label><br>
-    <input type="date" name="date" required><br><br>
-
-    <button type="submit">Submit Job</button>
-</form>
+    <button type="submit">Submit</button>
+  </form>
 {% endblock %}
