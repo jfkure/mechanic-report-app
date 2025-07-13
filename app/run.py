@@ -1,3 +1,4 @@
+# The new entry point to start your app
 from app import create_app, db
 app = create_app()
 
