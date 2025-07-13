@@ -1,3 +1,4 @@
+# Your data schema lives here
 from . import db
 
 class Report(db.Model):
