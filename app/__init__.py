@@ -1,3 +1,4 @@
+# Where your Flask app and DB are initialized
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
