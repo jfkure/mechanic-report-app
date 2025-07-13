@@ -1,0 +1,9 @@
+<table>
+  {% for job in jobs %}
+    <tr>
+      <td>{{ job[1] }}</td> <!-- customer_name -->
+      <td>{{ job[2] }}</td> <!-- vehicle_make -->
+      <td><a href="{{ url_for('report', job_id=job[0]) }}">View Report</a></td>
+    </tr>
+  {% endfor %}
+</table>
