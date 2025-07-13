@@ -1,10 +1,15 @@
 <!-- Displays job history and links to reports -->
-<table>
-  {% for job in jobs %}
-    <tr>
-      <td>{{ job[1] }}</td> <!-- customer_name -->
-      <td>{{ job[2] }}</td> <!-- vehicle_make -->
-      <td><a href="{{ url_for('report', job_id=job[0]) }}">View Report</a></td>
-    </tr>
-  {% endfor %}
-</table>
+{% extends 'layout.html' %}
+{% block content %}
+  <a href="{{ url_for('main.job_form') }}">+ Submit New Report</a>
+  <ul>
+    {% for report in reports %}
+      <li>
+        <strong>{{ report.mechanic_name }}</strong> @ {{ report.date.strftime('%Y-%m-%d') }}<br>
+        Vehicle: {{ report.vehicle_id }}<br>
+        Status: {{ report.status }}<br>
+        Issue: {{ report.issue_description }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
