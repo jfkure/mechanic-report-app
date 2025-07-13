@@ -1,3 +1,4 @@
+# Your routes and views now live here
 from flask import Blueprint, render_template
 main = Blueprint('main', __name__)
 
